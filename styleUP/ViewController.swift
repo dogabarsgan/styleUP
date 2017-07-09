@@ -24,7 +24,39 @@ struct ClothingItem {
 var myWardrobe = [ClothingItem]()
 
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+    
+    
+    @IBOutlet weak var addToWard: UIButton!
+    
+    
+    
+    
+    
+    
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        
+        return myWardrobe.count
+        
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.text = myWardrobe[indexPath.row].color + " " + myWardrobe[indexPath.row].type
+        
+        
+        return (cell)
+        
+    }
+    
+    
     
     
     //  variables that are used to add to the wardrobe
@@ -121,6 +153,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
             self.dropDown1.isHidden = true
             
+            //  call add button enabler
+            
+            self.addButtonEnabler()
+            
+            
         }
             
         else if (pickerView == dropDown2){
@@ -131,9 +168,39 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
             self.dropDown2.isHidden = true
             
+            self.addButtonEnabler()
+            
         }
         
     }
+    
+    
+    func addButtonEnabler(){
+        
+        if(typeSelected != "" && colorSelected != "") {
+            
+            
+            // enable the button
+            
+            addToWard.isEnabled = true;
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
