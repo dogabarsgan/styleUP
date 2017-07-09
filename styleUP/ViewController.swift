@@ -187,6 +187,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBAction func addToWardTapped(_ sender: Any) {
         
+        
+        
+        
         //  add the cloth struct to the list of structs
         
         let cloth = ClothingItem(type: typeSelected,color: colorSelected)
@@ -194,6 +197,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         myWardrobe.append(cloth)
         
         print(myWardrobe.count)
+        
+        
         
         
         

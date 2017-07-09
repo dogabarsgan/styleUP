@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -133,6 +134,7 @@
                                 <connections>
                                     <action selector="addTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rqY-mf-a27"/>
                                     <action selector="addToWardTapped:" destination="AX8-PB-dCR" eventType="touchUpInside" id="3NI-vu-UPq"/>
+                                    <segue destination="MwR-m2-hPO" kind="presentation" modalPresentationStyle="overCurrentContext" id="6Zu-6B-d4a"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Color" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cta-ip-xGc">
@@ -203,7 +205,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5F-Ok-Hz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.59999999999999" y="-154.27286356821591"/>
+            <point key="canvasLocation" x="297" y="590"/>
+        </scene>
+        <!--Action Successful-->
+        <scene sceneID="Lys-ha-Dgy">
+            <objects>
+                <viewController title="Action Successful" id="MwR-m2-hPO" sceneMemberID="viewController">
+                    <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="zjZ-if-Fkn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="57p-UD-rcL">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-Gt-75P">
+                                    <rect key="frame" x="8" y="8" width="359" height="651"/>
+                                    <connections>
+                                        <segue destination="BYZ-38-t0r" kind="presentation" id="Rfo-ju-rrj"/>
+                                    </connections>
+                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LPv-Pg-Wy4">
+                                    <rect key="frame" x="110.5" y="271" width="154.5" height="125.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added to Wardrobe!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klj-X1-a30">
+                                            <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="XTE-2D-Yds">
+                                            <rect key="frame" x="27.5" y="25.5" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="RDG-Ql-FBa"/>
+                                                <constraint firstAttribute="height" constant="100" id="Xxa-M3-YAj"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="154.5" id="FUm-Ey-85p"/>
+                                        <constraint firstAttribute="height" constant="125.5" id="xPq-f5-h8p"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="XOA-Gt-75P" firstAttribute="top" secondItem="57p-UD-rcL" secondAttribute="topMargin" id="8KY-RS-Lio"/>
+                                <constraint firstItem="XOA-Gt-75P" firstAttribute="leading" secondItem="57p-UD-rcL" secondAttribute="leadingMargin" id="JIb-sF-6Td"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="XOA-Gt-75P" secondAttribute="bottom" id="VkF-sA-kBN"/>
+                                <constraint firstItem="LPv-Pg-Wy4" firstAttribute="centerY" secondItem="57p-UD-rcL" secondAttribute="centerY" id="d3n-TU-FXk"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="XOA-Gt-75P" secondAttribute="trailing" id="t1N-cr-73m"/>
+                                <constraint firstItem="LPv-Pg-Wy4" firstAttribute="centerX" secondItem="57p-UD-rcL" secondAttribute="centerX" id="zXh-dR-3It"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="isK-Kk-Qt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="-154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OS5-d6-wjg">
@@ -225,9 +283,11 @@
     <resources>
         <image name="bottom" width="120" height="170"/>
         <image name="logo" width="122" height="67"/>
+        <image name="tick" width="100" height="100"/>
         <image name="top" width="120" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Rfo-ju-rrj"/>
         <segue reference="6cu-En-Mpq"/>
     </inferredMetricsTieBreakers>
 </document>
