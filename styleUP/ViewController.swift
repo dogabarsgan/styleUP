@@ -8,6 +8,7 @@
 
 
 import UIKit
+import os.log
 
 
 //  clothing item struct that will be stored in the wardrobe
@@ -17,7 +18,14 @@ struct ClothingItem {
     
     var color: String
     
+    
+    
+    
 }
+
+
+
+
 
 
 //  Initializing the myWardrobe array
@@ -25,16 +33,6 @@ var myWardrobe = [ClothingItem]()
 
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    
-    
-    
-    @IBOutlet weak var addToWard: UIButton!
-    
-    
-    
-    
     
     
     
@@ -55,8 +53,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return (cell)
         
     }
-    
-    
     
     
     //  variables that are used to add to the wardrobe
@@ -83,6 +79,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBOutlet weak var dropDown1: UIPickerView!
     @IBOutlet weak var dropDown2: UIPickerView!
+    
+    @IBOutlet weak var addToWard: UIButton!
     
     
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -190,16 +188,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         
         
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
     
     
     
@@ -214,7 +203,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         } else if ( textField == self.textBox2) {
             
-            //  disables keyboard
+            //  disables keyboar
             textField.resignFirstResponder()
             
             self.dropDown2.isHidden = false
@@ -222,6 +211,27 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         
     }
+    
+    
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -264,9 +274,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         myWardrobe.append(cloth)
         
         print(myWardrobe.count)
-        
-        
-        
         
         
     }
@@ -332,6 +339,26 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     //-------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    @IBAction func addActionSucc(_ sender: Any) {
+        
+         dismiss(animated: true, completion: nil)
+         dismiss(animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
