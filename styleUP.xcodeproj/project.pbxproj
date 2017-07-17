@@ -16,6 +16,8 @@
 		2C37E4AE1F1A2724007079FE /* ClothingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C37E4AD1F1A2724007079FE /* ClothingItemViewController.swift */; };
 		2C4DC6C51EFD637E001FD48B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4DC6C31EFD637E001FD48B /* Main.storyboard */; };
 		2C9AB6D91F1A4C5F00133F3B /* ClothingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AB6D81F1A4C5F00133F3B /* ClothingItemTableViewCell.swift */; };
+		2CCE88361F1D1ADA00DC2811 /* WeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */; };
+		2CCE88381F1D239E00DC2811 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE88371F1D239E00DC2811 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		2C37E4AD1F1A2724007079FE /* ClothingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothingItemViewController.swift; sourceTree = "<group>"; };
 		2C4DC6C41EFD637E001FD48B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C9AB6D81F1A4C5F00133F3B /* ClothingItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothingItemTableViewCell.swift; sourceTree = "<group>"; };
+		2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherFetcher.swift; sourceTree = "<group>"; };
+		2CCE88371F1D239E00DC2811 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				2C37E4AD1F1A2724007079FE /* ClothingItemViewController.swift */,
 				2C9AB6D81F1A4C5F00133F3B /* ClothingItemTableViewCell.swift */,
 				2C37E4A71F1A1D25007079FE /* ClothingItem.swift */,
+				2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */,
+				2CCE88371F1D239E00DC2811 /* Weather.swift */,
 				2C4DC6C31EFD637E001FD48B /* Main.storyboard */,
 				2C114F891EF2AFBF0044EF81 /* Assets.xcassets */,
 				2C114F8B1EF2AFBF0044EF81 /* LaunchScreen.storyboard */,
@@ -162,6 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CCE88381F1D239E00DC2811 /* Weather.swift in Sources */,
+				2CCE88361F1D1ADA00DC2811 /* WeatherFetcher.swift in Sources */,
 				2C37E4AE1F1A2724007079FE /* ClothingItemViewController.swift in Sources */,
 				2C9AB6D91F1A4C5F00133F3B /* ClothingItemTableViewCell.swift in Sources */,
 				2C37E4AC1F1A24DB007079FE /* MyWardrobeViewController.swift in Sources */,

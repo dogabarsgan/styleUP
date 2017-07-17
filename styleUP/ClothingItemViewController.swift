@@ -51,7 +51,7 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
             
             updateButtonStates()
             addToWard.setTitle("UPDATE",for: .normal)
-            navigationItem.title = clothingItem.type
+            navigationItem.title = clothingItem.color + " " + clothingItem.type
             
             typeSelected = clothingItem.type
             colorSelected = clothingItem.color
@@ -83,6 +83,8 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         //  add the cloth struct to the list of structs
         
         let cloth = ClothingItem(type: typeSelected,color: colorSelected)
+        
+        navigationItem.title = colorSelected + " " + typeSelected
         
         
         if let cloth = clothingItem {
@@ -252,7 +254,7 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateButtonStates()
-        navigationItem.title = textField.text
+        //navigationItem.title = textField.text
     }
     
 //---------------------------------------------------------------------------

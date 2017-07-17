@@ -32,5 +32,14 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string> order to show you your coordinates, this app needs access to this device’s location abilities. This information won’t be shared with anyone.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

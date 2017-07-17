@@ -74,6 +74,20 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D90-Kq-6ld">
+                                <rect key="frame" x="296" y="108" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHn-Uk-IOk">
+                                <rect key="frame" x="296" y="79" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -83,13 +97,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="s2j-1j-POi"/>
                     <connections>
+                        <outlet property="cityLabel" destination="WHn-Uk-IOk" id="OtP-PG-1pe"/>
                         <outlet property="lowerBodyImageView" destination="fsv-gS-7hB" id="w3Q-vu-zk8"/>
+                        <outlet property="temperatureLabel" destination="D90-Kq-6ld" id="V7P-Ef-w8y"/>
                         <outlet property="upperBodyImageView" destination="wqv-v7-sYd" id="yyX-xP-Pmp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-551" y="-154"/>
+            <point key="canvasLocation" x="-551.20000000000005" y="-154.27286356821591"/>
         </scene>
         <!--Edit Wardrobe-->
         <scene sceneID="tky-jq-qpo">
