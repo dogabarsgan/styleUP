@@ -5,7 +5,7 @@
 //  Created by Doğa Barsgan on 7/17/17.
 //  Copyright © 2017 Doğa Barsgan. All rights reserved.
 //
-//  adapted Joey Devilla http://www.globalnerdy.com/2016/05/16/how-to-build-an-ios-weather-app-in-swift-part-5-putting-it-all-together/
+//  adapted from Joey Devilla http://www.globalnerdy.com/2016/05/16/how-to-build-an-ios-weather-app-in-swift-part-5-putting-it-all-together/
 
 
 import Foundation

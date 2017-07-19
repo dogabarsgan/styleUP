@@ -9,6 +9,15 @@
 
 import UIKit
 import os.log
+import FirebaseAuth
+import FirebaseDatabase
+
+
+
+
+
+var myWardrobe = [ClothingItem]()
+
 
 var addedItems = [ClothingItem]()
 
@@ -18,13 +27,13 @@ class MyWardrobeViewController: UITableViewController{
     
     //MARK: Properties
     
+    
+
     @IBOutlet weak var testButton: UIBarButtonItem!
     
     
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    var myWardrobe = [ClothingItem]()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +44,9 @@ class MyWardrobeViewController: UITableViewController{
         
         
         // Load any saved clothing items, otherwise do nothing.
-        if let savedClothingItems = loadClothingItems() {
-            myWardrobe += savedClothingItems
-        }
+        //if let savedClothingItems = loadClothingItems() {
+            //myWardrobe += savedClothingItems
+        //}
         
     }
     
@@ -248,19 +257,26 @@ class MyWardrobeViewController: UITableViewController{
     
     //MARK: Private Methods
     
+
     private func saveClothingItems() {
-        
+     
+           /**
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myWardrobe, toFile: ClothingItem.ArchiveURL.path)
         if isSuccessfulSave {
             os_log("Clothing items successfully saved.", log: OSLog.default, type: .debug)
         } else {
             os_log("Failed to save clothing items...", log: OSLog.default, type: .error)
         }
-        
+        */
     }
     
+    
+    
+    /*
     private func loadClothingItems() -> [ClothingItem]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: ClothingItem.ArchiveURL.path) as? [ClothingItem]
     }
+ */
+ 
     
 }

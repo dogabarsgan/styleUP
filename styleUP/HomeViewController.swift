@@ -10,16 +10,23 @@
 import UIKit
 import os.log
 import CoreLocation
+import FirebaseAuth
+import FirebaseDatabase
 
 
 class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationManagerDelegate{
     
 //---------------------------------------------------------------------------
     
+
     //MARK: Properties
     
+    
     var weather: WeatherFetcher!
+    
     let locationManager = CLLocationManager()
+    
+    
     
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -29,10 +36,9 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     @IBOutlet weak var lowerBodyImageView: UIImageView!
     
     
-    var temperature = 0
+    var temperature = Int ()
     
-    
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -53,6 +59,17 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
 //---------------------------------------------------------------------------
     
     //MARK: Actions
+    
+    
+    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+        
+        
+        try! Auth.auth().signOut()
+        
+        performSegue(withIdentifier: "backToAuth", sender: self)
+        
+    }
+    
     
     
     @IBAction func tshirtTapped(_ sender: Any) {

@@ -23,7 +23,7 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     //  variables for the picker view
     var clothType = ["T-Shirt", "Pants",]
-    var color = ["Black", "White",]
+    var color = ["Black", "White", "Red", "Yellow", "Blue", "Green", "Orange", "Purple"]
     
     // Wardrobe Page
     @IBOutlet weak var textBox1: UITextField!

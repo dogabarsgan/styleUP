@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7zS-GV-LDg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fQD-1r-Ndr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -81,7 +81,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHn-Uk-IOk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHn-Uk-IOk">
                                 <rect key="frame" x="296" y="79" width="63" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -95,12 +95,19 @@
                             <constraint firstItem="ZWw-OY-8mR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hzq-3V-nKN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="s2j-1j-POi"/>
+                    <navigationItem key="navigationItem" title="Home" id="s2j-1j-POi">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="3yv-U3-UA0">
+                            <connections>
+                                <action selector="logoutButton:" destination="BYZ-38-t0r" id="HuO-zc-ynG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="WHn-Uk-IOk" id="OtP-PG-1pe"/>
                         <outlet property="lowerBodyImageView" destination="fsv-gS-7hB" id="w3Q-vu-zk8"/>
                         <outlet property="temperatureLabel" destination="D90-Kq-6ld" id="V7P-Ef-w8y"/>
                         <outlet property="upperBodyImageView" destination="wqv-v7-sYd" id="yyX-xP-Pmp"/>
+                        <segue destination="fQD-1r-Ndr" kind="presentation" identifier="backToAuth" modalTransitionStyle="coverVertical" id="KKj-i9-LjU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -215,7 +222,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5F-Ok-Hz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Tc7-B4-prx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="-89"/>
+            <point key="canvasLocation" x="1143" y="-154"/>
         </scene>
         <!--My Wardrobe-->
         <scene sceneID="Cge-gN-vlo">
@@ -339,7 +346,80 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isK-Kk-Qt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="843"/>
+            <point key="canvasLocation" x="1142" y="624"/>
+        </scene>
+        <!--Authentication Screen-->
+        <scene sceneID="Fja-pb-0zb">
+            <objects>
+                <viewController id="fQD-1r-Ndr" customClass="AuthenticationScreen" customModule="styleUP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pHf-00-i5T"/>
+                        <viewControllerLayoutGuide type="bottom" id="pi4-Te-ClY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mKc-po-xJs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nqi-9f-co3">
+                                <rect key="frame" x="54" y="305" width="267" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fQD-1r-Ndr" id="1dF-wR-Vxh"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fG-lr-wDL">
+                                <rect key="frame" x="54" y="363" width="267" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fQD-1r-Ndr" id="9Eg-ON-6Vf"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hfe-GS-7Sl">
+                                <rect key="frame" x="147" y="456" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="fQD-1r-Ndr" eventType="touchUpInside" id="fT7-Ud-QdY"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="8Iu-rr-y1y">
+                                <rect key="frame" x="80" y="101" width="215" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-Rw-mm1">
+                                <rect key="frame" x="127" y="230" width="121" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Login"/>
+                                    <segment title="Sign up"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeButtonName:" destination="fQD-1r-Ndr" eventType="valueChanged" id="gZS-nV-xT7"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailText" destination="nqi-9f-co3" id="GCP-Mk-go0"/>
+                        <outlet property="loginButton" destination="Hfe-GS-7Sl" id="wbS-Bh-vYJ"/>
+                        <outlet property="passwordText" destination="6fG-lr-wDL" id="nAA-OG-fp7"/>
+                        <outlet property="segmentControl" destination="0w2-Rw-mm1" id="mXT-yL-POp"/>
+                        <segue destination="7zS-GV-LDg" kind="show" identifier="loggedIn" id="vru-pN-Oa6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K06-75-Bhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1554" y="-154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OS5-d6-wjg">
@@ -355,7 +435,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFm-uA-iwg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1486" y="-154"/>
+            <point key="canvasLocation" x="-1554" y="624"/>
         </scene>
     </scenes>
     <resources>

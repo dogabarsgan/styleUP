@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C07D8441F1D58CB007F97B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C07D8431F1D58CB007F97B1 /* GoogleService-Info.plist */; };
+		2C07D8461F1D6162007F97B1 /* AuthenticationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07D8451F1D6162007F97B1 /* AuthenticationScreen.swift */; };
 		2C114F831EF2AFBF0044EF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C114F821EF2AFBF0044EF81 /* AppDelegate.swift */; };
 		2C114F851EF2AFBF0044EF81 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C114F841EF2AFBF0044EF81 /* HomeViewController.swift */; };
 		2C114F8A1EF2AFBF0044EF81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C114F891EF2AFBF0044EF81 /* Assets.xcassets */; };
@@ -18,9 +20,13 @@
 		2C9AB6D91F1A4C5F00133F3B /* ClothingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AB6D81F1A4C5F00133F3B /* ClothingItemTableViewCell.swift */; };
 		2CCE88361F1D1ADA00DC2811 /* WeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */; };
 		2CCE88381F1D239E00DC2811 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE88371F1D239E00DC2811 /* Weather.swift */; };
+		388F5FCCF6B6A58D3AD6795D /* Pods_styleUP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A79E2DF3433EDA489F8272F /* Pods_styleUP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A79E2DF3433EDA489F8272F /* Pods_styleUP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_styleUP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C07D8431F1D58CB007F97B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C07D8451F1D6162007F97B1 /* AuthenticationScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationScreen.swift; sourceTree = "<group>"; };
 		2C114F7F1EF2AFBF0044EF81 /* styleUP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = styleUP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C114F821EF2AFBF0044EF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C114F841EF2AFBF0044EF81 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +40,8 @@
 		2C9AB6D81F1A4C5F00133F3B /* ClothingItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClothingItemTableViewCell.swift; sourceTree = "<group>"; };
 		2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherFetcher.swift; sourceTree = "<group>"; };
 		2CCE88371F1D239E00DC2811 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		52BE69F8D5A0D331E3EA321F /* Pods-styleUP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-styleUP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-styleUP/Pods-styleUP.debug.xcconfig"; sourceTree = "<group>"; };
+		AC0DD3977E54C4B4D01ED59F /* Pods-styleUP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-styleUP.release.xcconfig"; path = "Pods/Target Support Files/Pods-styleUP/Pods-styleUP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				388F5FCCF6B6A58D3AD6795D /* Pods_styleUP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +62,7 @@
 				2C114F811EF2AFBF0044EF81 /* styleUP */,
 				2C114F801EF2AFBF0044EF81 /* Products */,
 				2C2A5A651EF30925006BC067 /* Frameworks */,
+				5BD4B81E357986838FF7C42D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				2C114F821EF2AFBF0044EF81 /* AppDelegate.swift */,
+				2C07D8451F1D6162007F97B1 /* AuthenticationScreen.swift */,
 				2C114F841EF2AFBF0044EF81 /* HomeViewController.swift */,
 				2C37E4AB1F1A24DB007079FE /* MyWardrobeViewController.swift */,
 				2C37E4AD1F1A2724007079FE /* ClothingItemViewController.swift */,
@@ -76,9 +87,10 @@
 				2CCE88351F1D1ADA00DC2811 /* WeatherFetcher.swift */,
 				2CCE88371F1D239E00DC2811 /* Weather.swift */,
 				2C4DC6C31EFD637E001FD48B /* Main.storyboard */,
-				2C114F891EF2AFBF0044EF81 /* Assets.xcassets */,
 				2C114F8B1EF2AFBF0044EF81 /* LaunchScreen.storyboard */,
+				2C114F891EF2AFBF0044EF81 /* Assets.xcassets */,
 				2C114F8E1EF2AFBF0044EF81 /* Info.plist */,
+				2C07D8431F1D58CB007F97B1 /* GoogleService-Info.plist */,
 			);
 			path = styleUP;
 			sourceTree = "<group>";
@@ -86,8 +98,18 @@
 		2C2A5A651EF30925006BC067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A79E2DF3433EDA489F8272F /* Pods_styleUP.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BD4B81E357986838FF7C42D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52BE69F8D5A0D331E3EA321F /* Pods-styleUP.debug.xcconfig */,
+				AC0DD3977E54C4B4D01ED59F /* Pods-styleUP.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,9 +119,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C114F911EF2AFBF0044EF81 /* Build configuration list for PBXNativeTarget "styleUP" */;
 			buildPhases = (
+				9F39CF078B00DE4BC0BD1B3F /* [CP] Check Pods Manifest.lock */,
 				2C114F7B1EF2AFBF0044EF81 /* Sources */,
 				2C114F7C1EF2AFBF0044EF81 /* Frameworks */,
 				2C114F7D1EF2AFBF0044EF81 /* Resources */,
+				367273B6DA71D8B9AA7D9A87 /* [CP] Embed Pods Frameworks */,
+				EAC0A00DFA8D620CEBB5C282 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,12 +181,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4DC6C51EFD637E001FD48B /* Main.storyboard in Resources */,
+				2C07D8441F1D58CB007F97B1 /* GoogleService-Info.plist in Resources */,
 				2C114F8D1EF2AFBF0044EF81 /* LaunchScreen.storyboard in Resources */,
 				2C114F8A1EF2AFBF0044EF81 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		367273B6DA71D8B9AA7D9A87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-styleUP/Pods-styleUP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F39CF078B00DE4BC0BD1B3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAC0A00DFA8D620CEBB5C282 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-styleUP/Pods-styleUP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C114F7B1EF2AFBF0044EF81 /* Sources */ = {
@@ -175,6 +249,7 @@
 				2C37E4AC1F1A24DB007079FE /* MyWardrobeViewController.swift in Sources */,
 				2C37E4A81F1A1D26007079FE /* ClothingItem.swift in Sources */,
 				2C114F851EF2AFBF0044EF81 /* HomeViewController.swift in Sources */,
+				2C07D8461F1D6162007F97B1 /* AuthenticationScreen.swift in Sources */,
 				2C114F831EF2AFBF0044EF81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +371,7 @@
 		};
 		2C114F921EF2AFBF0044EF81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52BE69F8D5A0D331E3EA321F /* Pods-styleUP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W7P55R5Q3U;
@@ -309,6 +385,7 @@
 		};
 		2C114F931EF2AFBF0044EF81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC0DD3977E54C4B4D01ED59F /* Pods-styleUP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W7P55R5Q3U;

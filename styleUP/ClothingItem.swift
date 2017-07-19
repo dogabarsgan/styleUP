@@ -10,7 +10,7 @@
 import UIKit
 import os.log
 
-class ClothingItem: NSObject, NSCoding {
+class ClothingItem  { //NSObject, NSCoding
     
 //---------------------------------------------------------------------------
     
@@ -31,11 +31,13 @@ class ClothingItem: NSObject, NSCoding {
     }
     
 //---------------------------------------------------------------------------
-    
+    /**
     //MARK: Path Archiving
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("myWardrobe")
+ 
+ */
     
 //---------------------------------------------------------------------------
     
@@ -64,6 +66,9 @@ class ClothingItem: NSObject, NSCoding {
     }
     
 //---------------------------------------------------------------------------
+   
+    
+/**
     
     //MARK: NSCoding
     
@@ -95,6 +100,7 @@ class ClothingItem: NSObject, NSCoding {
         
     }
     
+ */
 //---------------------------------------------------------------------------
     
 }
