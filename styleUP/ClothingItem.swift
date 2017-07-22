@@ -16,19 +16,22 @@ class ClothingItem  { //NSObject, NSCoding
     
     //MARK: Properties
     
+    var id: String
     var type: String
     var color: String
+    
     
 //---------------------------------------------------------------------------
     
     //MARK: Types
     
+    /**
     struct PropertyKey {
         
         static let type = "type"
         static let color = "color"
         
-    }
+    }*/
     
 //---------------------------------------------------------------------------
     /**
@@ -43,7 +46,7 @@ class ClothingItem  { //NSObject, NSCoding
     
     //MARK: Initialization
     
-    init?(type: String, color: String) {
+    init?(id: String, type: String, color: String) {
         
         
         // Type and color must not be empty
@@ -60,6 +63,7 @@ class ClothingItem  { //NSObject, NSCoding
         }
         
         // Initialize stored properties.
+        self.id = id
         self.type = type
         self.color = color
         

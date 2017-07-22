@@ -92,7 +92,7 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
                     
                     if user != nil {
                         
-                        // Sign-in success!
+                        // Sign-up success!
                         
                     } else {
                         

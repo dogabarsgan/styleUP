@@ -13,7 +13,6 @@ import CoreLocation
 import FirebaseAuth
 import FirebaseDatabase
 
-
 class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationManagerDelegate{
     
 //---------------------------------------------------------------------------
@@ -23,6 +22,8 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     
     
     var weather: WeatherFetcher!
+    
+    var temperature = Int ()
     
     let locationManager = CLLocationManager()
     
@@ -36,8 +37,6 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     @IBOutlet weak var lowerBodyImageView: UIImageView!
     
     
-    var temperature = Int ()
-    
 
     override func viewDidLoad() {
         
@@ -46,6 +45,7 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
         weather = WeatherFetcher(delegate: self)
         
         getLocation()
+        
         
     }
     
@@ -63,6 +63,9 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         
+        GlobVar.myWardrobe.removeAll()
+        
+        GlobVar.addedItems.removeAll()
         
         try! Auth.auth().signOut()
         
@@ -128,7 +131,7 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
                 locationManager.requestWhenInUseAuthorization()
                 
             default:
-                print("Oops! Shouldn't have come this far.")
+                print("Error!!")
             }
             
             return

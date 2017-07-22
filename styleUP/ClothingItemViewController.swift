@@ -9,6 +9,8 @@
 
 import UIKit
 import os.log
+import FirebaseDatabase
+import FirebaseAuth
 
 class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
     
@@ -16,14 +18,23 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     //MARK: Properties
     
+    
+    var ref = Database.database().reference()
+    
+    var userID = Auth.auth().currentUser?.uid
+    
+    
+    
+    
+    
     //  variables that are used to add to the wardrobe
     var typeSelected: String = ""
     var colorSelected: String = ""
     
     
     //  variables for the picker view
-    var clothType = ["T-Shirt", "Pants",]
-    var color = ["Black", "White", "Red", "Yellow", "Blue", "Green", "Orange", "Purple"]
+    var clothTypeOptions = ["T-Shirt", "Pants",]
+    var colorOptions = ["Black", "White", "Red", "Yellow", "Blue", "Green", "Orange", "Purple"]
     
     // Wardrobe Page
     @IBOutlet weak var textBox1: UITextField!
@@ -75,28 +86,33 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         
     }
+
     
     @IBAction func addToWardTapped(_ sender: Any) {
         
         
+        var MyWardrobeViewControllerObject = MyWardrobeViewController()
         
         //  add the cloth struct to the list of structs
         
-        let cloth = ClothingItem(type: typeSelected,color: colorSelected)
+        let cloth = ClothingItem(id: "placeholder", type: typeSelected,color: colorSelected)
         
         navigationItem.title = colorSelected + " " + typeSelected
         
-        
+        //  if editing an existing item
         if let cloth = clothingItem {
             
+            clothingItem?.id = cloth.id
             clothingItem?.type = cloth.type
             clothingItem?.color = cloth.color
+            
+         MyWardrobeViewControllerObject.updateClothingItem(key: (clothingItem?.id)!, clothe: clothingItem!)
             
             
         } else {
             
             
-            addedItems.append(cloth!)
+            GlobVar.addedItems.append(cloth!)
             
         }
         
@@ -149,13 +165,13 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         if (pickerView == dropDown1){
             
-            countRows = self.clothType.count
+            countRows = self.clothTypeOptions.count
             
         }
             
         else if (pickerView == dropDown2){
             
-            countRows = self.color.count
+            countRows = self.colorOptions.count
             
         }
         
@@ -168,7 +184,7 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         if (pickerView == dropDown1){
             
-            let titleRow = clothType[row]
+            let titleRow = clothTypeOptions[row]
             
             return titleRow
             
@@ -176,7 +192,7 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
             
         else if (pickerView == dropDown2){
             
-            let titleRow = color[row]
+            let titleRow = colorOptions[row]
             
             return titleRow
             
@@ -191,9 +207,9 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         if(pickerView == dropDown1){
             
-            self.textBox1.text = self.clothType[row]
+            self.textBox1.text = self.clothTypeOptions[row]
             
-            typeSelected = self.clothType[row]
+            typeSelected = self.clothTypeOptions[row]
             
             self.dropDown1.isHidden = true
             
@@ -206,9 +222,9 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
             
         else if (pickerView == dropDown2){
             
-            self.textBox2.text = self.color[row]
+            self.textBox2.text = self.colorOptions[row]
             
-            colorSelected = self.color[row]
+            colorSelected = self.colorOptions[row]
             
             self.dropDown2.isHidden = true
             
@@ -267,11 +283,11 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         let isPresentingInAddClothingItemMode = presentingViewController is UINavigationController
         
         if isPresentingInAddClothingItemMode {
-            addedItems.removeAll()
+            GlobVar.addedItems.removeAll()
             dismiss(animated: true, completion: nil)
         }
         else if let owningNavigationController = navigationController{
-            addedItems.removeAll()
+            GlobVar.addedItems.removeAll()
             owningNavigationController.popViewController(animated: true)
         }
         else {
@@ -298,10 +314,12 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         let type = textBox1.text ?? ""
         let color = textBox2.text ?? ""
+        let key =  ref.child("users").child(userID!).childByAutoId().key
+
         
         
         // Set the clothing item to be passed to ClothingItemTableViewController after the unwind segue.
-        clothingItem = ClothingItem(type: type, color: color)
+        clothingItem = ClothingItem(id: key, type: type, color: color)
     
         
     }

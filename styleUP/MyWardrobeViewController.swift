@@ -12,45 +12,37 @@ import os.log
 import FirebaseAuth
 import FirebaseDatabase
 
+struct GlobVar {
+    
+    
+    static var myWardrobe = [ClothingItem]()
+    static var addedItems = [ClothingItem]()
+    static var key = String()
+    
+}
 
-
-
-
-var myWardrobe = [ClothingItem]()
-
-
-var addedItems = [ClothingItem]()
 
 class MyWardrobeViewController: UITableViewController{
-    
 //---------------------------------------------------------------------------
-    
-    //MARK: Properties
-    
-    
 
-    @IBOutlet weak var testButton: UIBarButtonItem!
-    
-    
-    @IBOutlet weak var addButton: UIBarButtonItem!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Use the edit button item provided by the table view controller.
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+
+        // Use the edit button item provided by the table view controller.
         navigationItem.rightBarButtonItems = [editButtonItem, addButton, testButton]
         
         
-        // Load any saved clothing items, otherwise do nothing.
-        //if let savedClothingItems = loadClothingItems() {
-            //myWardrobe += savedClothingItems
-        //}
-        
+        fetchMyWardrobe()
+
     }
     
-    
+ 
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
@@ -58,21 +50,93 @@ class MyWardrobeViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
     
-   
+    
+//---------------------------------------------------------------------------
+    
+    //MARK: Properties
+    
+
+    @IBOutlet weak var testButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    let ref = Database.database().reference()
+    
+    var userID = Auth.auth().currentUser?.uid
+
+
+    
 //---------------------------------------------------------------------------
 
     //MARK: - Actions
+    
+    @IBAction func unwindToMyWardrobe(sender: UIStoryboardSegue) {
+        
+        
+        if let sourceViewController = sender.source as? ClothingItemViewController, let clothingItem = sourceViewController.clothingItem {
+            
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                print("updating clothing item")
+                
+                
+                // Update an existing clothing item
+                
+                GlobVar.key = ref.child("users").child(userID!).child(clothingItem.id).key
+
+                //GlobVar.myWardrobe[selectedIndexPath.row] = clothingItem
+                
+                updateClothingItem(key: GlobVar.key, clothe: clothingItem)
+
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                
+                
+                GlobVar.addedItems.removeAll()
+                
+                
+                
+               
+                
+                
+            }else {
+                // Add a new clothing item.
+                
+                
+                for item in GlobVar.addedItems{
+                    
+                    //let newIndexPath = IndexPath(row: GlobVar.myWardrobe.count, section: 0)
+                    
+                    addClothingItem(clothe: item)
+
+                    
+                    //GlobVar.myWardrobe.append(GlobVar.addedItems[0])
+                    
+                    
+                    
+                    //tableView.insertRows(at: [newIndexPath], with: .automatic)
+                    
+                    
+                }
+                
+                GlobVar.addedItems.removeAll()
+                
+            }
+            
+            
+        }
+    }
+
     
     
     @IBAction func testButtonAction(_ sender: UIBarButtonItem) {
         
         print("myWardrobe Contents: \n")
         
-        if(myWardrobe.count != 0){
+        if(GlobVar.myWardrobe.count != 0){
             
-            for i in 1...myWardrobe.count {
+            for i in 1...GlobVar.myWardrobe.count {
                 
-                print(myWardrobe[i-1].color + " " + myWardrobe[i-1].type)
+                print(GlobVar.myWardrobe[i-1].color + " " + GlobVar.myWardrobe[i-1].type)
                 
             }
             
@@ -82,16 +146,18 @@ class MyWardrobeViewController: UITableViewController{
         
         print("addedItemContents: \n")
         
-        if(addedItems.count != 0){
+        if(GlobVar.addedItems.count != 0){
             
-            for y in 1...addedItems.count {
+            for y in 1...GlobVar.addedItems.count {
                 
-                print(addedItems[y-1].color + "" + addedItems[y-1].type)
+                print(GlobVar.addedItems[y-1].color + "" + GlobVar.addedItems[y-1].type)
                 
             }
         }
         
     }
+    
+    
     
     
 //---------------------------------------------------------------------------
@@ -106,7 +172,7 @@ class MyWardrobeViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
-        return myWardrobe.count
+        return GlobVar.myWardrobe.count
         
     }
     
@@ -120,7 +186,8 @@ class MyWardrobeViewController: UITableViewController{
             fatalError("The dequeued cell is not an instance of ClothingItemTableViewCell.")
         }
         
-        cell.textLabel?.text = myWardrobe[indexPath.row].color + " " + myWardrobe[indexPath.row].type
+        cell.textLabel?.text = GlobVar.myWardrobe[indexPath.row].color + " " + GlobVar.myWardrobe[indexPath.row].type
+        
         
         return cell
     }
@@ -138,32 +205,23 @@ class MyWardrobeViewController: UITableViewController{
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
             // Delete the row from the data source
-            myWardrobe.remove(at: indexPath.row)
-            saveClothingItems()
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //GlobVar.myWardrobe.remove(at: indexPath.row)
+            
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
+            deleteClothingItem(id: GlobVar.myWardrobe[indexPath.row].id)
+            
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
     
-    //  CREATING THE TABLE CELL
-    
-    /**
-     
-     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-     
-     
-     let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-     
-     cell.textLabel?.text = myWardrobe[indexPath.row].color + " " + myWardrobe[indexPath.row].type
-     
-     
-     return cell
-     
-     }*/
-
     
     
 //---------------------------------------------------------------------------
@@ -195,7 +253,7 @@ class MyWardrobeViewController: UITableViewController{
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let selectedClothingItem = myWardrobe[indexPath.row]
+            let selectedClothingItem = GlobVar.myWardrobe[indexPath.row]
             clothingItemDetailViewController.clothingItem = selectedClothingItem
             
         default:
@@ -205,52 +263,129 @@ class MyWardrobeViewController: UITableViewController{
     
 //---------------------------------------------------------------------------
     
-    //MARK: - Actions
+    //MARK: - Functions
     
-    @IBAction func unwindToMyWardrobe(sender: UIStoryboardSegue) {
-        
-        
-        if let sourceViewController = sender.source as? ClothingItemViewController, let clothingItem = sourceViewController.clothingItem {
+    
+    func uploadMyWardrobe() {
+    
+            var index = 1
+    
+            for item in GlobVar.myWardrobe {
+            
+            //creating a clothing item with given values
+            let clothe = ["type" : item.type, "color" : item.color ]
             
             
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            //adding the clothing item inside the generated unique key
+            ref.child("users").child(String(index)).setValue(clothe)
                 
-                print("updating clothing item")
+            index = index + 1
+      
+            self.tableView.reloadData()
+            
+        }
+        
+        
+        
+    
+    }
+    
+    
+    func fetchMyWardrobe() {
+        
+        
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        
+        //observing the data changes
+        ref.child("users").child(userID!).observe(DataEventType.value, with: { (snapshot) in
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
                 
+                //clearing the list
+                GlobVar.myWardrobe.removeAll()
                 
-                
-                // Update an existing clothing item.
-                
-                myWardrobe[selectedIndexPath.row] = clothingItem
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                
-                addedItems.removeAll()
-                
-            }else {
-                // Add a new clothing item.
-                
-                
-                for _ in 1...addedItems.count{
+                //iterating through the values
+                for clothings in snapshot.children.allObjects as! [DataSnapshot] {
                     
-                    let newIndexPath = IndexPath(row: myWardrobe.count, section: 0)
+                    //getting values
+                    let clothingObject = clothings.value as? [String: AnyObject]
                     
-                    myWardrobe.append(addedItems[0])
+                    let clothingID = clothingObject?["id"] as! String
+                    let clothingColor  = clothingObject?["color"] as! String
+                    let clothingType = clothingObject?["type"] as! String
                     
-                    addedItems.remove(at: 0)
+                    //creating clothing object with model and fetched values
+                    let clothe = ClothingItem(id: clothingID, type: clothingType,color: clothingColor)
                     
-                    tableView.insertRows(at: [newIndexPath], with: .automatic)
-                    
+                    //appending it to list
+                    GlobVar.myWardrobe.append(clothe!)
                 }
                 
+                //reloading the tableview
+                self.tableView.reloadData()
             }
-            
-            // Save the clothing items
-            saveClothingItems()
-            
-            
-            print(myWardrobe.count)
-        }
+        })
+        
+        
+        
+   
     }
+    
+    
+
+    func addClothingItem(clothe: ClothingItem) {
+        
+        let key =  ref.child("users").child(userID!).childByAutoId().key
+        
+        let clothe = ["id": key, "color" : clothe.color , "type" : clothe.type ]
+        
+        ref.child("users").child(userID!).child(key).setValue(clothe)
+        
+        
+    }
+    
+    
+    func deleteClothingItem(id: String) {
+        
+        
+        ref.child("users").child(userID!).child(id).setValue(nil)
+        
+    }
+    
+    func updateClothingItem(key: String, clothe: ClothingItem) {
+        
+        let clothe = ["id": key, "color" : clothe.color  ,"type": clothe.type]
+        
+        ref.child("users").child(userID!).child(key).setValue(clothe)
+        
+    }
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 //---------------------------------------------------------------------------
@@ -258,7 +393,8 @@ class MyWardrobeViewController: UITableViewController{
     //MARK: Private Methods
     
 
-    private func saveClothingItems() {
+    
+        
      
            /**
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myWardrobe, toFile: ClothingItem.ArchiveURL.path)
@@ -268,7 +404,7 @@ class MyWardrobeViewController: UITableViewController{
             os_log("Failed to save clothing items...", log: OSLog.default, type: .error)
         }
         */
-    }
+  
     
     
     
