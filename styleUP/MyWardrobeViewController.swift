@@ -206,14 +206,15 @@ class MyWardrobeViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
+            deleteClothingItem(id: GlobVar.myWardrobe[indexPath.row].id)
+            
             // Delete the row from the data source
             
-            //GlobVar.myWardrobe.remove(at: indexPath.row)
+            GlobVar.myWardrobe.remove(at: indexPath.row)
             
-            //tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             
-            deleteClothingItem(id: GlobVar.myWardrobe[indexPath.row].id)
             
             
         } else if editingStyle == .insert {
@@ -301,11 +302,17 @@ class MyWardrobeViewController: UITableViewController{
         //observing the data changes
         ref.child("users").child(userID!).observe(DataEventType.value, with: { (snapshot) in
             
+            //clearing the list
+            GlobVar.myWardrobe.removeAll()
+            
+            //reloading the tableview
+            self.tableView.reloadData()
+
+            
             //if the reference have some values
             if snapshot.childrenCount > 0 {
                 
-                //clearing the list
-                GlobVar.myWardrobe.removeAll()
+            
                 
                 //iterating through the values
                 for clothings in snapshot.children.allObjects as! [DataSnapshot] {
@@ -327,11 +334,11 @@ class MyWardrobeViewController: UITableViewController{
                 //reloading the tableview
                 self.tableView.reloadData()
             }
+            
+           
         })
         
         
-        
-   
     }
     
     
