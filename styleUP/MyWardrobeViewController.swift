@@ -82,11 +82,11 @@ class MyWardrobeViewController: UITableViewController{
                 
                 // Update an existing clothing item
                 
-                GlobVar.key = ref.child("users").child(userID!).child(clothingItem.id).key
-
-                //GlobVar.myWardrobe[selectedIndexPath.row] = clothingItem
+                var otherClothingItem = GlobVar.myWardrobe[selectedIndexPath.row]
                 
-                updateClothingItem(key: GlobVar.key, clothe: clothingItem)
+                GlobVar.myWardrobe[selectedIndexPath.row] = clothingItem
+                
+                updateClothingItem(id: otherClothingItem.id, color: clothingItem.color, type: clothingItem.type)
 
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 
@@ -272,7 +272,8 @@ class MyWardrobeViewController: UITableViewController{
     
             for item in GlobVar.myWardrobe {
             
-            //creating a clothing item with given values
+            //creating a clothing item dictionary with given values
+                
             let clothe = ["type" : item.type, "color" : item.color ]
             
             
@@ -286,7 +287,7 @@ class MyWardrobeViewController: UITableViewController{
         }
         
         
-        
+        index = 1
     
     }
     
@@ -339,6 +340,8 @@ class MyWardrobeViewController: UITableViewController{
         
         let key =  ref.child("users").child(userID!).childByAutoId().key
         
+        //  adding the clothe item as a dictionary
+        
         let clothe = ["id": key, "color" : clothe.color , "type" : clothe.type ]
         
         ref.child("users").child(userID!).child(key).setValue(clothe)
@@ -354,11 +357,13 @@ class MyWardrobeViewController: UITableViewController{
         
     }
     
-    func updateClothingItem(key: String, clothe: ClothingItem) {
+    func updateClothingItem(id: String, color: String, type: String) {
         
-        let clothe = ["id": key, "color" : clothe.color  ,"type": clothe.type]
+        // updating the clothe dictionary
         
-        ref.child("users").child(userID!).child(key).setValue(clothe)
+        let clothe = ["id": id, "color" : color  ,"type": type]
+        
+        ref.child("users").child(userID!).child(id).setValue(clothe)
         
     }
     

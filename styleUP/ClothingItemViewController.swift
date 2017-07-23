@@ -24,9 +24,6 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
     var userID = Auth.auth().currentUser?.uid
     
     
-    
-    
-    
     //  variables that are used to add to the wardrobe
     var typeSelected: String = ""
     var colorSelected: String = ""
@@ -100,16 +97,15 @@ class ClothingItemViewController: UIViewController, UITextFieldDelegate, UIPicke
         navigationItem.title = colorSelected + " " + typeSelected
         
         //  if editing an existing item
-        if let cloth = clothingItem {
-            
-            clothingItem?.id = cloth.id
-            clothingItem?.type = cloth.type
-            clothingItem?.color = cloth.color
-            
-         MyWardrobeViewControllerObject.updateClothingItem(key: (clothingItem?.id)!, clothe: clothingItem!)
+        if (cloth?.color == clothingItem?.color) && (cloth?.type == clothingItem?.type) {
             
             
-        } else {
+            clothingItem?.type = (cloth?.type)!
+            clothingItem?.color = (cloth?.color)!
+            
+            
+            
+        } else { //if adding an item
             
             
             GlobVar.addedItems.append(cloth!)
