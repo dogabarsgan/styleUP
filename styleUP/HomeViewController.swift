@@ -32,6 +32,9 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    
     
     @IBOutlet weak var upperBodyImageView: UIImageView!
     @IBOutlet weak var lowerBodyImageView: UIImageView!
@@ -155,7 +158,71 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
         // that updates all the labels in a dispatch_async() call.
         DispatchQueue.main.async {
             
-            self.cityLabel.text = weather.city
+            self.cityLabel.text = weather.city.uppercased()
+    
+            var dateAndTime = weather.dateAndTime.description
+    
+            
+            
+            // Extracting year, month, year info
+          
+            
+            let start1 = dateAndTime.index(dateAndTime.startIndex, offsetBy: 0)
+            let end1 = dateAndTime.index(dateAndTime.endIndex, offsetBy: -21)
+            let range1 = start1..<end1
+            
+            var year = dateAndTime.substring(with: range1)
+            
+            let start2 = dateAndTime.index(dateAndTime.startIndex, offsetBy: 5)
+            let end2 = dateAndTime.index(dateAndTime.endIndex, offsetBy: -18)
+            let range2 = start2..<end2
+            
+            var month = dateAndTime.substring(with: range2)
+            
+            
+            
+            switch month {
+            case "01":
+                month = "JAN"
+            case "02":
+                month = "FEB"
+            case "03":
+                month = "MAR"
+            case "04":
+                month = "APR"
+            case "05":
+                month = "MAY"
+            case "06":
+                month = "JUNE"
+            case "07":
+                month = "JULY"
+            case "08":
+                month = "AUG"
+            case "09":
+                month = "SEPT"
+            case "10":
+                month = "OCT"
+            case "11":
+                month = "NOV"
+            case "12":
+                month = "DEC"
+                
+            default: break
+                
+            }
+
+            
+ 
+            let start3 = dateAndTime.index(dateAndTime.startIndex, offsetBy: 8)
+            let end3 = dateAndTime.index(dateAndTime.endIndex, offsetBy: -15)
+            let range3 = start3..<end3
+            
+            var day = dateAndTime.substring(with: range3)  // play
+
+            
+            self.monthLabel.text = month
+            self.dayLabel.text = day
+            
             self.temperatureLabel.text = "\(Int(round(weather.tempCelsius)))°"
             
             self.temperature =  Int(round(weather.tempCelsius) )

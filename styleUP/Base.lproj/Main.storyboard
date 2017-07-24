@@ -57,6 +57,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-LE-EZY" userLabel="Day Label">
+                                <rect key="frame" x="16" y="108" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyY-qo-HsQ" userLabel="Month Label">
+                                <rect key="frame" x="16" y="79" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHn-Uk-IOk">
                                 <rect key="frame" x="296" y="79" width="63" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,7 +94,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="WHn-Uk-IOk" id="OtP-PG-1pe"/>
+                        <outlet property="dayLabel" destination="cYW-LE-EZY" id="hHd-9y-axO"/>
                         <outlet property="lowerBodyImageView" destination="fsv-gS-7hB" id="w3Q-vu-zk8"/>
+                        <outlet property="monthLabel" destination="GyY-qo-HsQ" id="uZW-kg-MST"/>
                         <outlet property="temperatureLabel" destination="D90-Kq-6ld" id="V7P-Ef-w8y"/>
                         <outlet property="upperBodyImageView" destination="wqv-v7-sYd" id="yyX-xP-Pmp"/>
                         <segue destination="fQD-1r-Ndr" kind="presentation" identifier="backToAuth" modalTransitionStyle="coverVertical" id="KKj-i9-LjU"/>
