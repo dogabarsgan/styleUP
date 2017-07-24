@@ -74,22 +74,6 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
     }
     
     
-    
-    @IBAction func tshirtTapped(_ sender: Any) {
-        
-        print("tshirt Tapped")
-        upperBodyImageView.image = UIImage(named: "tshirtBlue")
-        
-    }
-    
-    
-    @IBAction func pantsTapped(_ sender: Any) {
-        
-        print("pants Tapped")
-        lowerBodyImageView.image = UIImage(named: "pantsBlack")
-        
-    }
-    
 //---------------------------------------------------------------------------
     
     // MARK: - CLLocationManagerDelegate and Related methods

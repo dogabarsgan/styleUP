@@ -16,6 +16,15 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
+        let leftSwipe = UISwipeGestureRecognizer(target:self, action: #selector(swipeAction(swipe:)))
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target:self, action: #selector(swipeAction(swipe:)))
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(rightSwipe)
+
+        
     }
     
     
@@ -110,5 +119,37 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+}
+
+extension AuthenticationScreen{
+    
+    func swipeAction(swipe:UISwipeGestureRecognizer){
+        
+        switch swipe.direction.rawValue {
+            
+        case 1:
+            // perform go left
+            
+            segmentControl.selectedSegmentIndex = 0
+            changeButtonName(self)
+            
+            
+        case 2:
+            // perform go right
+            
+            segmentControl.selectedSegmentIndex = 1
+            changeButtonName(self)
+            
+        default:
+            break
+            
+            
+        }
+        
+        
+    }
+    
+    
     
 }

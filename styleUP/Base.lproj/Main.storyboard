@@ -24,50 +24,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZWw-OY-8mR">
-                                <rect key="frame" x="80" y="73" width="215" height="521.5"/>
+                                <rect key="frame" x="108.5" y="103.5" width="158" height="461"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="38N-mI-4d0">
-                                        <rect key="frame" x="0.0" y="0.0" width="215" height="67"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="67"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8zt-nN-DZG" userLabel="Clothing Stack View">
-                                        <rect key="frame" x="0.0" y="77" width="215" height="384"/>
+                                        <rect key="frame" x="0.0" y="77" width="158" height="384"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="170" image="top" translatesAutoresizingMaskIntoConstraints="NO" id="wqv-v7-sYd">
-                                                <rect key="frame" x="47.5" y="0.0" width="120" height="170"/>
+                                                <rect key="frame" x="19" y="0.0" width="120" height="170"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="170" image="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="fsv-gS-7hB">
-                                                <rect key="frame" x="47.5" y="175" width="120" height="170"/>
+                                                <rect key="frame" x="19" y="175" width="120" height="170"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSf-rc-Hgg" userLabel="Randomize Button">
-                                                <rect key="frame" x="28.5" y="350" width="158" height="34"/>
+                                                <rect key="frame" x="0.0" y="350" width="158" height="34"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="   MY WARDROBE   "/>
                                                 <connections>
                                                     <segue destination="kRe-B9-Jlx" kind="show" id="ckh-uk-nLD"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="xTH-Jg-yOr" userLabel="Button Stack View">
-                                        <rect key="frame" x="0.0" y="487.5" width="215" height="34"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-Ux-xwx" userLabel="Tshirt Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="34"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                <state key="normal" title="   TSHIRT   ">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="tshirtTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40X-1V-7F8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ze-xW-8eu" userLabel="Pants Button">
-                                                <rect key="frame" x="130" y="0.0" width="85" height="34"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="   PANTS   "/>
-                                                <connections>
-                                                    <action selector="pantsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5a-eF-QuB"/>
                                                 </connections>
                                             </button>
                                         </subviews>

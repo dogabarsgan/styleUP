@@ -93,12 +93,8 @@ class MyWardrobeViewController: UITableViewController{
                 
                 GlobVar.addedItems.removeAll()
                 
-                
-                
-               
-                
-                
-            }else {
+       
+            } else {
                 // Add a new clothing item.
                 
                 
@@ -374,40 +370,13 @@ class MyWardrobeViewController: UITableViewController{
         
     }
     
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
 //---------------------------------------------------------------------------
     
     //MARK: Private Methods
     
 
-    
-        
-     
            /**
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myWardrobe, toFile: ClothingItem.ArchiveURL.path)
         if isSuccessfulSave {
