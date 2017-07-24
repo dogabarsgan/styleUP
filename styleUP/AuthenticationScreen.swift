@@ -38,6 +38,26 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func showSimpleAlert(title: String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:  .default,
+            handler: nil
+        )
+        alert.addAction(okAction)
+        present(
+            alert,
+            animated: true,
+            completion: nil
+        )
+    }
+
+    
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
@@ -84,7 +104,9 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
                     } else {
                         
                         if let myError = error?.localizedDescription {
-                            print(myError)
+                            
+                            self.showSimpleAlert(title: "Error!", message: myError)
+                            
                         }else {
                             
                             print("Error!")
@@ -106,7 +128,11 @@ class AuthenticationScreen: UIViewController, UITextFieldDelegate {
                     } else {
                         
                         if let myError = error?.localizedDescription{
+                            
                             print(myError)
+                            
+                            self.showSimpleAlert(title: "Error!", message: myError)
+      
                         }else {
                             
                             print("Error!")
