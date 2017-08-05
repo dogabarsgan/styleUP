@@ -17,6 +17,8 @@ struct GlobVar {
     
     static var myWardrobe = [ClothingItem]()
     static var addedItems = [ClothingItem]()
+    static var possibleCombs = [[ClothingItem]]()
+    
     static var key = String()
     
 }
@@ -37,8 +39,13 @@ class MyWardrobeViewController: UITableViewController{
         // Use the edit button item provided by the table view controller.
         navigationItem.rightBarButtonItems = [editButtonItem, addButton, testButton]
         
-        
         fetchMyWardrobe()
+        
+        //fetchPossibleCombinations()
+        
+        filterMyWardrobe()
+
+        suggestClothing()
 
     }
     
@@ -82,7 +89,7 @@ class MyWardrobeViewController: UITableViewController{
                 
                 // Update an existing clothing item
                 
-                var otherClothingItem = GlobVar.myWardrobe[selectedIndexPath.row]
+                let otherClothingItem = GlobVar.myWardrobe[selectedIndexPath.row]
                 
                 GlobVar.myWardrobe[selectedIndexPath.row] = clothingItem
                 
@@ -103,7 +110,7 @@ class MyWardrobeViewController: UITableViewController{
                     //let newIndexPath = IndexPath(row: GlobVar.myWardrobe.count, section: 0)
                     
                     addClothingItem(clothe: item)
-
+                    
                     
                     //GlobVar.myWardrobe.append(GlobVar.addedItems[0])
                     
@@ -140,7 +147,7 @@ class MyWardrobeViewController: UITableViewController{
             
         }
         
-        print("addedItemContents: \n")
+        print("addedItem Contents: \n")
         
         if(GlobVar.addedItems.count != 0){
             
@@ -150,6 +157,21 @@ class MyWardrobeViewController: UITableViewController{
                 
             }
         }
+        
+        print("possibleCombs Contents: \n")
+        
+        if(GlobVar.possibleCombs.count != 0){
+            
+            for y in 1...GlobVar.possibleCombs.count {
+                
+                print(GlobVar.possibleCombs[y-1][0].color + "" + GlobVar.possibleCombs[y-1][0].type)
+                
+                print(GlobVar.possibleCombs[y-1][1].color + "" + GlobVar.possibleCombs[y-1][1].type)
+
+                
+            }
+        }
+
         
     }
     
@@ -263,31 +285,6 @@ class MyWardrobeViewController: UITableViewController{
     //MARK: - Functions
     
     
-    func uploadMyWardrobe() {
-    
-            var index = 1
-    
-            for item in GlobVar.myWardrobe {
-            
-            //creating a clothing item dictionary with given values
-                
-            let clothe = ["type" : item.type, "color" : item.color ]
-            
-            
-            //adding the clothing item inside the generated unique key
-            ref.child("users").child(String(index)).setValue(clothe)
-                
-            index = index + 1
-      
-            self.tableView.reloadData()
-            
-        }
-        
-        
-        index = 1
-    
-    }
-    
     
     func fetchMyWardrobe() {
         
@@ -296,7 +293,7 @@ class MyWardrobeViewController: UITableViewController{
         let userID = Auth.auth().currentUser?.uid
         
         //observing the data changes
-        ref.child("users").child(userID!).observe(DataEventType.value, with: { (snapshot) in
+        ref.child("users").child(userID!).child("myWardrobe").observe(DataEventType.value, with: { (snapshot) in
             
             //clearing the list
             GlobVar.myWardrobe.removeAll()
@@ -337,26 +334,23 @@ class MyWardrobeViewController: UITableViewController{
         
     }
     
-    
-
     func addClothingItem(clothe: ClothingItem) {
         
-        let key =  ref.child("users").child(userID!).childByAutoId().key
+        let key =  ref.child("users").child(userID!).child("myWardrobe").childByAutoId().key
         
         //  adding the clothe item as a dictionary
         
         let clothe = ["id": key, "color" : clothe.color , "type" : clothe.type ]
         
-        ref.child("users").child(userID!).child(key).setValue(clothe)
+        ref.child("users").child(userID!).child("myWardrobe").child(key).setValue(clothe)
         
         
     }
     
-    
     func deleteClothingItem(id: String) {
         
         
-        ref.child("users").child(userID!).child(id).setValue(nil)
+        ref.child("users").child(userID!).child("myWardrobe").child(id).setValue(nil)
         
     }
     
@@ -366,11 +360,179 @@ class MyWardrobeViewController: UITableViewController{
         
         let clothe = ["id": id, "color" : color  ,"type": type]
         
-        ref.child("users").child(userID!).child(id).setValue(clothe)
+        ref.child("users").child(userID!).child("myWardrobe").child(id).setValue(clothe)
         
     }
     
+    
+    //---------------------------------------------------------------------------
+    
+    
+    func fetchPossibleCombinations() {
+        
+        
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        
+        //observing the data changes
+        ref.child("users").child(userID!).child("possibleCombs").observe(DataEventType.value, with: { (snapshot) in
+            
+            //clearing the list
+            GlobVar.possibleCombs.removeAll()
+            
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                
+                var combination1 = [ClothingItem]()
+                
+                //iterating through the values
+                for clothings in snapshot.children.allObjects as! [DataSnapshot] {
+                    
+                    //getting values
+                    let clothingObject = clothings.value as? [String: AnyObject]
+                    
+                    let clothingID = clothingObject?["id"] as! String
+                    let clothingColor  = clothingObject?["color"] as! String
+                    let clothingType = clothingObject?["type"] as! String
+                    
+                    //creating clothing object with model and fetched values
+                    
+                    let clothe = ClothingItem(id: clothingID, type: clothingType,color: clothingColor)
+                    
+                    
+                    combination1.append(clothe!)
+                    
+                    //  SORUN BURADA !!!!
+                    
+                }
+                
+                //appending it to list
+                GlobVar.possibleCombs.append(combination1)
+                
+                
+            }
+            
+            
+        })
+        
+        
+    }
+    
+    func filterMyWardrobe() {
+        
+        
+            
+    
+        
+        //  creating the individual combination array MAKE THE NAME ADAPTIVE??
+            
+        var combination = [ClothingItem]()
+    
+        
+        //observing the data changes
+        ref.child("users").child(userID!).child("myWardrobe").observe(DataEventType.value, with: { (snapshot) in
+            
+            
+            //if the reference have some values
+            if snapshot.childrenCount > 0 {
+                
+                
+                
+                //iterating through the values
+                for clothings in snapshot.children.allObjects as! [DataSnapshot] {
+                    
+                                       
+                    //getting values
+                    let clothingObject = clothings.value as? [String: AnyObject]
+                    
+                    let clothingID = clothingObject?["id"] as! String
+                    let clothingColor  = clothingObject?["color"] as! String
+                    let clothingType = clothingObject?["type"] as! String
+                    
+                    
+                    
+                    
+                    if(clothingColor == "White" && clothingType == "T-Shirt") {
+                        
+                         var upperPartClothingItem = ClothingItem(id: clothingID, type: clothingType, color: clothingColor)
+                        
+                        combination.append(upperPartClothingItem!)
+                                               
+                        
+                    }
+                    
+                    if(clothingColor == "White" && clothingType == "Pants") {
+                        
+                        var lowerPartClothingItem = ClothingItem(id: clothingID, type: clothingType, color: clothingColor)
+                        
+                        combination.append(lowerPartClothingItem!)
+            
+                        
+                    }
+                    
+                    
+                }
+                
+                //  adding a combination into the possible combinations array
+                
+                GlobVar.possibleCombs.append(combination)
+                
 
+            }
+            
+            
+        })
+        
+        
+        //  adding each element of possibleCombs to the server one by one
+        for item in GlobVar.possibleCombs{
+            
+            addClothingCombination(combinArray: item)
+            
+        }
+        
+        
+        
+        
+    }
+    
+    func addClothingCombination(combinArray: [ClothingItem]) {
+        
+        let key =  ref.child("users").child(userID!).child("possibleCombs").childByAutoId().key
+        
+        //  adding the clothing combination as a dictionary
+        
+        
+        if combinArray.count > 0 {
+            
+            
+            
+        
+        let combArray = [
+            
+            ["id": key, "color" : combinArray[0].color , "type" : combinArray[0].type],
+            ["id": key, "color" : combinArray[1].color , "type" : combinArray[1].type]
+        
+        ]
+        
+        ref.child("users").child(userID!).child("possibleCombs").child(key).setValue(combArray)
+        
+        }
+    }
+    
+    func suggestClothing(){
+        
+        
+       //   REPLACE UPPER IMAGE / LOWER IMAGE RANDOMLY FROM THE POSSIBLE COMBINATIONS ARRAY
+        
+        
+    }   // FOR DISPLAY PURPOSES
+    
+    //---------------------------------------------------------------------------
+    
+
+    
 
 //---------------------------------------------------------------------------
     

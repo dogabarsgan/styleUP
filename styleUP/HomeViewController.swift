@@ -160,7 +160,7 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
             
             self.cityLabel.text = weather.city.uppercased()
     
-            var dateAndTime = weather.dateAndTime.description
+            let dateAndTime = weather.dateAndTime.description
     
             
             
@@ -217,7 +217,7 @@ class HomeViewController: UIViewController, WeatherFetcherDelegate, CLLocationMa
             let end3 = dateAndTime.index(dateAndTime.endIndex, offsetBy: -15)
             let range3 = start3..<end3
             
-            var day = dateAndTime.substring(with: range3)  // play
+            let day = dateAndTime.substring(with: range3)  // play
 
             
             self.monthLabel.text = month
