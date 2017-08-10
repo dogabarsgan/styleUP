@@ -19,6 +19,7 @@ struct GlobVar {
     static var addedItems = [ClothingItem]()
     static var possibleCombs = [[ClothingItem]]()
     
+    
     static var key = String()
     
 }
@@ -41,10 +42,10 @@ class MyWardrobeViewController: UITableViewController{
         
         fetchMyWardrobe()
         
-        //fetchPossibleCombinations()
+        fetchPossibleCombinations()
         
         filterMyWardrobe()
-
+    
         suggestClothing()
 
     }
@@ -97,8 +98,10 @@ class MyWardrobeViewController: UITableViewController{
 
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 
-                
                 GlobVar.addedItems.removeAll()
+                
+                filterMyWardrobe()
+
                 
        
             } else {
@@ -112,6 +115,7 @@ class MyWardrobeViewController: UITableViewController{
                     addClothingItem(clothe: item)
                     
                     
+                    
                     //GlobVar.myWardrobe.append(GlobVar.addedItems[0])
                     
                     
@@ -121,7 +125,11 @@ class MyWardrobeViewController: UITableViewController{
                     
                 }
                 
+                
                 GlobVar.addedItems.removeAll()
+                
+                filterMyWardrobe()
+
                 
             }
             
@@ -229,6 +237,11 @@ class MyWardrobeViewController: UITableViewController{
             // Delete the row from the data source
             
             GlobVar.myWardrobe.remove(at: indexPath.row)
+            
+            
+            filterMyWardrobe()
+            
+
             
             tableView.deleteRows(at: [indexPath], with: .fade)
             
@@ -343,6 +356,7 @@ class MyWardrobeViewController: UITableViewController{
         let clothe = ["id": key, "color" : clothe.color , "type" : clothe.type ]
         
         ref.child("users").child(userID!).child("myWardrobe").child(key).setValue(clothe)
+    
         
         
     }
@@ -351,6 +365,8 @@ class MyWardrobeViewController: UITableViewController{
         
         
         ref.child("users").child(userID!).child("myWardrobe").child(id).setValue(nil)
+        
+
         
     }
     
@@ -361,6 +377,7 @@ class MyWardrobeViewController: UITableViewController{
         let clothe = ["id": id, "color" : color  ,"type": type]
         
         ref.child("users").child(userID!).child("myWardrobe").child(id).setValue(clothe)
+        
         
     }
     
@@ -390,25 +407,37 @@ class MyWardrobeViewController: UITableViewController{
                 for clothings in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     //getting values
-                    let clothingObject = clothings.value as? [String: AnyObject]
+                
+                    let clothingObject1 = clothings.childSnapshot(forPath: "0").value as? [String: AnyObject]
+                    let clothingObject2 = clothings.childSnapshot(forPath: "1").value as? [String: AnyObject]
                     
-                    let clothingID = clothingObject?["id"] as! String
-                    let clothingColor  = clothingObject?["color"] as! String
-                    let clothingType = clothingObject?["type"] as! String
+                    let clothingID1 = clothingObject1?["id"] as! String
+                    let clothingColor1  = clothingObject1?["color"] as! String
+                    let clothingType1 = clothingObject1?["type"] as! String
+                    
+                    let clothingID2 = clothingObject2?["id"] as! String
+                    let clothingColor2  = clothingObject2?["color"] as! String
+                    let clothingType2 = clothingObject2?["type"] as! String
+
+
                     
                     //creating clothing object with model and fetched values
                     
-                    let clothe = ClothingItem(id: clothingID, type: clothingType,color: clothingColor)
+                    let clothe1 = ClothingItem(id: clothingID1, type: clothingType1,color: clothingColor1)
+                    
+                    let clothe2 = ClothingItem(id: clothingID2, type: clothingType2, color: clothingColor2)
                     
                     
-                    combination1.append(clothe!)
+                    combination1.append(clothe1!)
+                    combination1.append(clothe2!)
                     
-                    //  SORUN BURADA !!!!
+                    
+                    //appending it to list
+                    GlobVar.possibleCombs.append(combination1)
+
+                    
                     
                 }
-                
-                //appending it to list
-                GlobVar.possibleCombs.append(combination1)
                 
                 
             }
@@ -419,15 +448,20 @@ class MyWardrobeViewController: UITableViewController{
         
     }
     
+    //  FAZLA EKLEME OLAYI BURADA
     func filterMyWardrobe() {
         
-        
-            
     
         
         //  creating the individual combination array MAKE THE NAME ADAPTIVE??
             
         var combination = [ClothingItem]()
+        
+        ref.child("users").child(userID!).child("possibleCombs").setValue(nil)
+        
+        GlobVar.possibleCombs.removeAll()
+        
+
     
         
         //observing the data changes
@@ -436,7 +470,6 @@ class MyWardrobeViewController: UITableViewController{
             
             //if the reference have some values
             if snapshot.childrenCount > 0 {
-                
                 
                 
                 //iterating through the values
@@ -474,9 +507,23 @@ class MyWardrobeViewController: UITableViewController{
                     
                 }
                 
+                
                 //  adding a combination into the possible combinations array
                 
-                GlobVar.possibleCombs.append(combination)
+                
+                     GlobVar.possibleCombs.append(combination)
+                
+                
+                //  adding each element of possibleCombs to the server one by one
+                for item in GlobVar.possibleCombs{
+                    
+                    
+                    self.addClothingCombination(combinArray: item)
+                    
+                }
+
+                    
+                
                 
 
             }
@@ -485,12 +532,8 @@ class MyWardrobeViewController: UITableViewController{
         })
         
         
-        //  adding each element of possibleCombs to the server one by one
-        for item in GlobVar.possibleCombs{
-            
-            addClothingCombination(combinArray: item)
-            
-        }
+        
+        
         
         
         
@@ -499,25 +542,25 @@ class MyWardrobeViewController: UITableViewController{
     
     func addClothingCombination(combinArray: [ClothingItem]) {
         
+        
         let key =  ref.child("users").child(userID!).child("possibleCombs").childByAutoId().key
         
         //  adding the clothing combination as a dictionary
         
         
-        if combinArray.count > 0 {
+        if combinArray.count == 2 {
+            
+ 
+            let combArray = [
+                
+                ["id": key, "color" : combinArray[0].color , "type" : combinArray[0].type],
+                ["id": key, "color" : combinArray[1].color , "type" : combinArray[1].type]
+                
+            ]
+            
+            ref.child("users").child(userID!).child("possibleCombs").child(key).setValue(combArray)
             
             
-            
-        
-        let combArray = [
-            
-            ["id": key, "color" : combinArray[0].color , "type" : combinArray[0].type],
-            ["id": key, "color" : combinArray[1].color , "type" : combinArray[1].type]
-        
-        ]
-        
-        ref.child("users").child(userID!).child("possibleCombs").child(key).setValue(combArray)
-        
         }
     }
     
